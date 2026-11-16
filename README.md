@@ -1,12 +1,10 @@
 # Servicio web SOAP · Biblioteca con Axis2
 
-Servicio web **SOAP** en **Java** con **Apache Axis2 1.6.2**, desplegado en **Tomcat**, para gestionar una biblioteca: usuarios, catálogo de libros y préstamos. La gestión de credenciales se delega en un servicio de autenticación externo. Incluye un **cliente** que prueba el servicio con varias sesiones simultáneas.
+Servicio web **SOAP** hecho en **Java** con **Apache Axis2 1.6.2** y desplegado en **Tomcat**. Sirve para gestionar una biblioteca: usuarios, catálogo de libros y préstamos. Las credenciales no se guardan aquí, sino que se delegan en un servicio de autenticación externo. También hay un **cliente** que prueba el servicio abriendo varias sesiones a la vez.
 
-> 🎓 **Proyecto académico**: práctica de la asignatura *Sistemas Orientados a Servicios* (3.º del Grado en Ingeniería Informática)<br>
-> Universidad Politécnica de Madrid · Campus de Montegancedo<br>
-> 👥 Trabajo en grupo (3 personas)
+Es una práctica de la asignatura *Sistemas Orientados a Servicios* (3.º del Grado en Ingeniería Informática, Universidad Politécnica de Madrid). La hicimos en un grupo de 3 personas.
 
-Es la segunda parte de la asignatura; la primera es la [API REST de biblioteca](https://github.com/RespinosaDev/api-biblioteca-sos) con Spring Boot.
+Es la segunda parte de la asignatura. La primera fue la [API REST de biblioteca](https://github.com/RespinosaDev/api-biblioteca-sos) con Spring Boot.
 
 ---
 
@@ -68,9 +66,9 @@ cd ../cliente && ant run                             # ejecuta el cliente de pru
 
 El cliente abre cinco sesiones a la vez (admin, dos de un mismo usuario, otro usuario y una sin login) y hace **59 comprobaciones**: permisos, sesiones concurrentes, préstamos, cambio de contraseña y bajas con sesiones abiertas. Cada ejecución usa nombres únicos, así que se puede lanzar varias veces contra el mismo servidor.
 
-## Estado respecto a la entrega
+## Qué cambié respecto a la entrega
 
-La versión entregada estaba incompleta. Al publicarla se terminó y se corrigió:
+La versión que entregamos estaba incompleta, así que antes de subirla la terminé y corregí varias cosas:
 
 - `services.xml` no declaraba las operaciones, así que el servicio desplegado no respondía a ninguna llamada.
 - Sin `scope` de sesión, Axis2 creaba una instancia nueva por petición y se perdían la sesión y los datos.
@@ -79,4 +77,4 @@ La versión entregada estaba incompleta. Al publicarla se terminó y se corrigi�
 - Faltaban permisos en `addUser` y `deleteUser`, y `borrowBook` fallaba la primera vez que un usuario pedía un libro.
 - El cliente no tenía operaciones. Se generó el *stub* y se escribió el cliente de prueba.
 
-Todo se ha probado con el cliente sobre **Tomcat 9 + Axis2 1.6.2**.
+Lo he probado todo con el cliente sobre **Tomcat 9 + Axis2 1.6.2**.
