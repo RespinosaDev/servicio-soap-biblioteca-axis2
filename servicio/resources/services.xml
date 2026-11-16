@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Descriptor del servicio para Axis2 1.6.2.
+     scope="transportsession": Axis2 crea una instancia del servicio por cada sesión HTTP
+     de cliente, así cada cliente tiene su propia sesión de usuario (login/logout).
+     El estado compartido (libros, préstamos) es estático en ETSIINFLibrarySkeleton. -->
+<serviceGroup>
+    <service name="ETSIINFLibrary" scope="transportsession">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="es.upm.etsiinf.sos.ETSIINFLibraryMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">es.upm.etsiinf.sos.ETSIINFLibrarySkeleton</parameter>
+        <parameter name="useOriginalwsdl">false</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="addUser" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:addUser</actionMapping>
+            <outputActionMapping>urn:addUserResponse</outputActionMapping>
+        </operation>
+        <operation name="login" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:login</actionMapping>
+            <outputActionMapping>urn:loginResponse</outputActionMapping>
+        </operation>
+        <operation name="logout" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:logout</actionMapping>
+            <outputActionMapping>urn:logoutResponse</outputActionMapping>
+        </operation>
+        <operation name="deleteUser" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:deleteUser</actionMapping>
+            <outputActionMapping>urn:deleteUserResponse</outputActionMapping>
+        </operation>
+        <operation name="changePassword" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:changePassword</actionMapping>
+            <outputActionMapping>urn:changePasswordResponse</outputActionMapping>
+        </operation>
+        <operation name="addBook" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:addBook</actionMapping>
+            <outputActionMapping>urn:addBookResponse</outputActionMapping>
+        </operation>
+        <operation name="removeBook" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:removeBook</actionMapping>
+            <outputActionMapping>urn:removeBookResponse</outputActionMapping>
+        </operation>
+        <operation name="getBook" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:getBook</actionMapping>
+            <outputActionMapping>urn:getBookResponse</outputActionMapping>
+        </operation>
+        <operation name="listBooks" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:listBooks</actionMapping>
+            <outputActionMapping>urn:listBooksResponse</outputActionMapping>
+        </operation>
+        <operation name="getBooksFromAuthor" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:getBooksFromAuthor</actionMapping>
+            <outputActionMapping>urn:getBooksFromAuthorResponse</outputActionMapping>
+        </operation>
+        <operation name="borrowBook" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:borrowBook</actionMapping>
+            <outputActionMapping>urn:borrowBookResponse</outputActionMapping>
+        </operation>
+        <operation name="returnBook" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:returnBook</actionMapping>
+            <outputActionMapping>urn:returnBookResponse</outputActionMapping>
+        </operation>
+        <operation name="listBorrowedBooks" mep="http://www.w3.org/ns/wsdl/in-out" namespace="http://sos.etsiinf.upm.es">
+            <actionMapping>urn:listBorrowedBooks</actionMapping>
+            <outputActionMapping>urn:listBorrowedBooksResponse</outputActionMapping>
+        </operation>
+    </service>
+</serviceGroup>

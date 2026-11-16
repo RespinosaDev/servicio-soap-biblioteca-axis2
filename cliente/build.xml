@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Compila y ejecuta el cliente de prueba. Requiere AXIS2_HOME apuntando a Axis2 1.6.2.
+     Uso:  ant            (compila)
+           ant run        (ejecuta contra http://localhost:8080/axis2/services/ETSIINFLibrary)
+           ant run -Durl=http://otro-host:8080/axis2/services/ETSIINFLibrary -->
+<project name="ETSIINFLibraryClient" basedir="." default="compile">
+    <property environment="env"/>
+    <property name="axis2.home" value="${env.AXIS2_HOME}"/>
+    <property name="url" value="http://localhost:8080/axis2/services/ETSIINFLibrary"/>
+
+    <path id="axis2.class.path">
+        <fileset dir="${axis2.home}/lib" includes="*.jar"/>
+    </path>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" includeantruntime="false" encoding="UTF-8" debug="on">
+            <classpath refid="axis2.class.path"/>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="es.upm.etsiinf.sos.client.ClienteBiblioteca" fork="true" failonerror="true">
+            <arg value="${url}"/>
+            <classpath>
+                <pathelement location="build/classes"/>
+                <path refid="axis2.class.path"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+</project>
